@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.TextView.BufferType;
 
 public class MainActivity extends ActionBarActivity {
 	private ArrayAdapter<ToDo> adapter;
@@ -61,6 +63,7 @@ public class MainActivity extends ActionBarActivity {
 		
 		this.toDoItems.add(new ToDo(msg, null, false));
 		this.adapter.notifyDataSetChanged();
+		((EditText) findViewById(R.id.new_todo_entry)).setText("", TextView.BufferType.EDITABLE);
 	}
 	
 	public void onCheck(View listView)
