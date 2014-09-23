@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">bbruner-notes</string>
+    <string name="action_settings">Action Settings</string>
+    <string name="new_todo_name">New To Do Name</string>
+    <string name="new_todo_button">New</string>
+    <string name="to_do_image">To Do</string>
+    <string name="temp_string">Updating...</string>
+    <string name="checkbox_help">Check Finished To Do Items</string>
+
+</resources>
