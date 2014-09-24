@@ -9,5 +9,11 @@
     <string name="temp_string">Updating...</string>
     <string name="checkbox_help">Check Finished To Do Items</string>
     <string name="action_search">search</string>
+    <string name="mark_finished_string">Mark as Finished</string>
+    <string name="mark_unfinished_string">Mark as Unfinished</string>
+    <string name="archive">Archive</string>
+    <string name="title_activity_archive">ArchiveActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="archive_hint">Archived To Do List</string>
 
 </resources>

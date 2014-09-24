@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class ToDoAdapter extends ArrayAdapter<ToDo>{
 			public CheckBox checkbox;
 		};
 		
-		TempToDo temp = new TempToDo();
+		final TempToDo temp = new TempToDo();
 		
 		temp.todo = this.toDoList.get(listPosition);
 		temp.textView = (TextView) listViewRow.findViewById(R.id.list_text);
@@ -50,11 +51,25 @@ public class ToDoAdapter extends ArrayAdapter<ToDo>{
 		*/
 		
 		temp.textView.setText(this.toDoList.get(listPosition).getName());
-		temp.imageView.setImageResource(R.drawable.ic_action_settings);
-		temp.checkbox.setChecked(this.toDoList.get(listPosition).isFinished());
+		
+		//temp.imageView.setImageResource(R.drawable.ic_action_not_important);
+		if(temp.todo.isFinished()){ temp.imageView.setImageResource(R.drawable.ic_action_important); }
+		else { temp.imageView.setImageResource(R.drawable.ic_action_not_important); }
+		/*temp.imageView.setOnClickListener(new View.OnClickListener(){
+			
+			public void onClick(View v)
+			{
+				temp.todo.toggleFinished();
+				notifyDataSetChanged();
+			}
+		});*/
+		
+		temp.checkbox.setChecked(this.toDoList.get(listPosition).isSelected());
+		
 		
 		//listViewRow.setTag(this.toDoList.get(listPosition));
-		listViewRow.setTag(temp);
+		//listViewRow.setTag(temp);
+		listViewRow.setTag(temp.todo);
 		
 		return listViewRow;
 	} 
