@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+       
+    <!--  A search option, make it appear in the action bar if there is room -->
+    <item android:id="@+id/action_archive"
+        android:icon="@drawable/ic_action_sd_storage"
+        android:title="@string/archive"
+        android:showAsAction="ifRoom" />
+    
+    <item android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_discard"
+        android:title="@string/action_search"
+        android:showAsAction="ifRoom" />
+    
+    <item android:id="@+id/mark_finished"
+        android:icon="@drawable/ic_action_important"
+        android:title="@string/mark_finished_string"
+        android:showAsAction="ifRoom" />
+    
+    <item android:id="@+id/mark_unfinished"
+        android:icon="@drawable/ic_action_not_important"
+        android:title="@string/mark_unfinished_string"
+        android:showAsAction="ifRoom" />
+    
+    <!--  Settings to put in action bar overflow -->
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:showAsAction="never" />
+
+</menu>
