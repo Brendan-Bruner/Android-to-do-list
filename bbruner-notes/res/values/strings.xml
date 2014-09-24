@@ -8,5 +8,6 @@
     <string name="to_do_image">To Do</string>
     <string name="temp_string">Updating...</string>
     <string name="checkbox_help">Check Finished To Do Items</string>
+    <string name="action_search">search</string>
 
 </resources>

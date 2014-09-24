@@ -1,9 +1,11 @@
 package com.example.bbruner_notes;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -61,6 +63,31 @@ public class MainActivity extends ActionBarActivity {
 			@Override
 			public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 				// TODO Auto-generated method stub
+				if(item.getItemId() == R.id.action_search)
+				{
+					SparseBooleanArray ids = toDoList.getCheckedItemPositions();
+					int size = ids.size();
+					ArrayList<ToDo> selections = new ArrayList<ToDo>();
+					for(int i = size-1; i >= 0; i--)
+					{
+						int key = ids.keyAt(i);
+						if(ids.get(key))
+						{
+							
+							//adapter.remove(adapter.getItem(ids.keyAt(i)));
+							toDoItems.remove(adapter.getItem(key));
+							//selections.add(adapter.getItem(key));
+						}
+					}
+					/*Iterator<ToDo> iter = selections.iterator();
+					while(iter.hasNext())
+					{
+						toDoItems.remove(iter.next());
+					}*/
+					adapter.notifyDataSetChanged();
+					mode.finish();
+					return true;
+				}
 				return false;
 			}
 
