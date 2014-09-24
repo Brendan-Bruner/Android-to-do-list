@@ -1,6 +1,15 @@
 package com.example.bbruner_notes;
 
-public class ToDo {
+import java.io.Serializable;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ToDo implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String description;
 	private boolean finished;
@@ -13,6 +22,18 @@ public class ToDo {
 		this.finished = finished;
 		this.selected = false;
 	}
+	
+	/*@Override
+	public ToDo(Parcel in)
+	{
+		String[] inputs = new String[3];
+		in.readStringArray(inputs)
+		
+		this.name = inputs[0];
+		this.name description = inputs[1];
+		this.finished = Boolean.parseBoolean(inputs[2]);
+		this.selected = Boolean.parseBoolean(inputs[3]);
+	}*/
 	
 	public void setSelected(boolean selected){ this.selected = selected; }
 	
@@ -43,5 +64,20 @@ public class ToDo {
 	public void setName(String name){ this.name = name; }
 	
 	public String getName(){ return this.name; }
+
+	
+	/*
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// TODO Auto-generated method stub
+		
+		
+	}*/
 
 }
