@@ -3,35 +3,35 @@ package com.example.bbruner_notes;
 public class ToDo {
 	private String name;
 	private String description;
-	private boolean checked;
+	private boolean finished;
 	
-	public ToDo(String name, String description, boolean checked)
+	public ToDo(String name, String description, boolean finished)
 	{
 		this.name = name;
 		this.description = description;
-		this.checked = checked;
+		this.finished = finished;
 	}
 	
-	public void setChecked(boolean checked)
+	public void setFinished(boolean finished)
 	{
-		this.checked = checked;
+		this.finished = finished;
 	}
 	
-	public void toggleChecked()
+	public void toggleFinished()
 	{
-		if(this.checked)
+		if(this.finished)
 		{
-			this.checked = false;
+			this.finished = false;
 		}
 		else
 		{
-			this.checked = true;
+			this.finished = true;
 		}
 	}
 	
-	public boolean isChecked()
+	public boolean isFinished()
 	{
-		return this.checked;
+		return this.finished;
 	}
 	
 	public void setDescription(String description)

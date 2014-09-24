@@ -42,7 +42,7 @@ public class ToDoAdapter extends ArrayAdapter<ToDo>{
 		temp.imageView = (ImageView) listViewRow.findViewById(R.id.list_image);
 		temp.checkbox = (CheckBox) listViewRow.findViewById(R.id.todo_checkbox);
 		temp.checkbox.setTag(temp.todo);
-		
+
 		/*
 		TextView text = (TextView) listViewRow.findViewById(R.id.list_text);
 		ImageView image = (ImageView) listViewRow.findViewById(R.id.list_image);
@@ -51,7 +51,7 @@ public class ToDoAdapter extends ArrayAdapter<ToDo>{
 		
 		temp.textView.setText(this.toDoList.get(listPosition).getName());
 		temp.imageView.setImageResource(R.drawable.ic_action_settings);
-		temp.checkbox.setChecked(this.toDoList.get(listPosition).isChecked());
+		temp.checkbox.setChecked(this.toDoList.get(listPosition).isFinished());
 		
 		//listViewRow.setTag(this.toDoList.get(listPosition));
 		listViewRow.setTag(temp);

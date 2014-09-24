@@ -4,10 +4,14 @@ import java.util.ArrayList;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.ActionMode;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -36,6 +40,45 @@ public class MainActivity extends ActionBarActivity {
 		
 		// Set this adapter to manage to do items being added and removed
 		this.toDoList.setAdapter(this.adapter);
+		
+		this.toDoList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+		this.toDoList.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener(){
+
+			@Override
+			public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+				
+				MenuInflater inflater = mode.getMenuInflater();
+		        inflater.inflate(R.menu.to_do_menu, menu);
+		        return true;
+			}
+
+			@Override
+			public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+
+			@Override
+			public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+
+			@Override
+			public void onDestroyActionMode(ActionMode mode) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onItemCheckedStateChanged(ActionMode mode,
+					int position, long id, boolean checked) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 	}
 
 	@Override
@@ -69,8 +112,12 @@ public class MainActivity extends ActionBarActivity {
 	public void onCheck(View listView)
 	{
 		ToDo checkedToDo = (ToDo) listView.getTag();
+		
+		this.toDoList.setItemChecked(this.toDoList.getPositionForView(listView), true);
+		
 		//adapter.remove(checkedToDo);
-		checkedToDo.toggleChecked();
+		checkedToDo.toggleFinished();
+		
 		return;
 	}
 }

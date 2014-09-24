@@ -1112,9 +1112,9 @@ containing a value of this type.
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
         public static final int listMode=0x7f050001;
-        public static final int list_image=0x7f050040;
+        public static final int list_image=0x7f05003f;
         public static final int list_item=0x7f050029;
-        public static final int list_text=0x7f05003f;
+        public static final int list_text=0x7f050040;
         public static final int list_view_main=0x7f05003d;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
@@ -1204,6 +1204,7 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
+        public static final int to_do_menu=0x7f0c0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
