@@ -43,48 +43,16 @@ public class ToDoAdapter extends ArrayAdapter<ToDo>{
 		temp.imageView = (ImageView) listViewRow.findViewById(R.id.list_image);
 		temp.checkbox = (CheckBox) listViewRow.findViewById(R.id.todo_checkbox);
 		temp.checkbox.setTag(temp.todo);
-
-		/*
-		TextView text = (TextView) listViewRow.findViewById(R.id.list_text);
-		ImageView image = (ImageView) listViewRow.findViewById(R.id.list_image);
-		CheckBox checkBox = (CheckBox) listViewRow.findViewById(R.id.todo_checkbox);
-		*/
 		
 		temp.textView.setText(this.toDoList.get(listPosition).getName());
 		
-		//temp.imageView.setImageResource(R.drawable.ic_action_not_important);
 		if(temp.todo.isFinished()){ temp.imageView.setImageResource(R.drawable.ic_action_important); }
 		else { temp.imageView.setImageResource(R.drawable.ic_action_not_important); }
-		/*temp.imageView.setOnClickListener(new View.OnClickListener(){
-			
-			public void onClick(View v)
-			{
-				temp.todo.toggleFinished();
-				notifyDataSetChanged();
-			}
-		});*/
 		
 		temp.checkbox.setChecked(this.toDoList.get(listPosition).isSelected());
 		
-		
-		//listViewRow.setTag(this.toDoList.get(listPosition));
-		//listViewRow.setTag(temp);
 		listViewRow.setTag(temp.todo);
 		
 		return listViewRow;
-	} 
-	
-	/*public void onCheckBoxClick(View listView)
-	{
-		//CheckBox checkBox = (CheckBox) findViewById(R.id.todo_checkbox);
-		//this.toDoList.get(listPosition).toggleChecked();
-	}
-	private static class TempToDo{
-		ToDo todo;
-		TextView textView;
-		ImageView imageView;
-		CheckBox checkbox;
-	}*/
-	
-	
+	} 	
 }

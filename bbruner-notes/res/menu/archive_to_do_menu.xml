@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
        
     <!--  A search option, make it appear in the action bar if there is room -->
-    <item android:id="@+id/action_archive"
-        android:icon="@drawable/ic_action_sd_storage"
+    <item android:id="@+id/action_unarchive"
+        android:icon="@drawable/ic_action_labels"
         android:title="@string/archive"
         android:showAsAction="ifRoom" />
     

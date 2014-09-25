@@ -15,5 +15,6 @@
     <string name="title_activity_archive">ArchiveActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="archive_hint">Archived To Do List</string>
+    <string name="go_to_todo">Main To Dos</string>
 
 </resources>
