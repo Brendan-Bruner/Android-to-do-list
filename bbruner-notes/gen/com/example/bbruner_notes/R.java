@@ -1089,7 +1089,7 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020060;
     }
     public static final class id {
-        public static final int action_archive=0x7f05004f;
+        public static final int action_archive=0x7f050050;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
         public static final int action_bar_container=0x7f05001b;
@@ -1101,8 +1101,8 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_search=0x7f050047;
-        public static final int action_unarchive=0x7f05004c;
+        public static final int action_search=0x7f050048;
+        public static final int action_unarchive=0x7f05004d;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int all_message=0x7f05003c;
         public static final int always=0x7f05000b;
@@ -1118,11 +1118,11 @@ containing a value of this type.
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
-        public static final int go_to_all_from_archived=0x7f05004a;
-        public static final int go_to_all_from_main=0x7f05004d;
+        public static final int go_to_all_from_archived=0x7f05004b;
+        public static final int go_to_all_from_main=0x7f05004e;
         public static final int go_to_archived_from_all=0x7f050046;
-        public static final int go_to_archived_from_main=0x7f05004e;
-        public static final int go_to_main_from_archived=0x7f05004b;
+        public static final int go_to_archived_from_main=0x7f05004f;
+        public static final int go_to_main_from_archived=0x7f05004c;
         public static final int go_to_todo_from_all=0x7f050045;
         public static final int home=0x7f050014;
         public static final int homeAsUp=0x7f050005;
@@ -1136,8 +1136,8 @@ containing a value of this type.
         public static final int list_view_all=0x7f05003d;
         public static final int list_view_archive=0x7f05003f;
         public static final int list_view_main=0x7f050041;
-        public static final int mark_finished=0x7f050048;
-        public static final int mark_unfinished=0x7f050049;
+        public static final int mark_finished=0x7f050049;
+        public static final int mark_unfinished=0x7f05004a;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int new_todo_entry=0x7f050040;
@@ -1161,6 +1161,7 @@ containing a value of this type.
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
         public static final int split_action_bar=0x7f05001e;
+        public static final int statistics=0x7f050047;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
         public static final int title=0x7f05002b;
@@ -1292,6 +1293,7 @@ containing a value of this type.
         public static final int mark_unfinished_string=0x7f0a0016;
         public static final int new_todo_button=0x7f0a0010;
         public static final int new_todo_name=0x7f0a000f;
+        public static final int statistics=0x7f0a0022;
         public static final int temp_string=0x7f0a0012;
         public static final int title_activity_all=0x7f0a001c;
         public static final int title_activity_archive=0x7f0a0018;

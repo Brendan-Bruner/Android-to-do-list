@@ -90,25 +90,35 @@ public class MainActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		
 		// Handle action bar item clicks here.
-		int id = item.getItemId();
-		
-		if (id == R.id.go_to_archived_from_main) 
+		switch(item.getItemId())
 		{
-			Intent intent = new Intent(this, ArchiveActivity.class);
+		
+		case R.id.go_to_archived_from_main: 
+
+			Intent intentArchived = new Intent(this, ArchiveActivity.class);
 			Toast.makeText(this, "Archived To Dos", Toast.LENGTH_SHORT).show();
-			startActivity(intent);
+			startActivity(intentArchived);
 			return true;
-		}
-		else if (id == R.id.go_to_all_from_main)
-		{
-			Intent intent = new Intent(this, AllActivity.class);
-			Toast.makeText(this, "All To Dos", Toast.LENGTH_SHORT).show();
-			startActivity(intent);
-			return true;
-		}
 		
-		return super.onOptionsItemSelected(item);
+		case R.id.go_to_all_from_main:
+		
+			Intent intentAll = new Intent(this, AllActivity.class);
+			Toast.makeText(this, "All To Dos", Toast.LENGTH_SHORT).show();
+			startActivity(intentAll);
+			return true;
+		
+		case R.id.statistics:
+			
+			ToDoStatistics stat = new ToDoStatistics();
+			stat.calcStatistics(toDoItems, archiveToDo);
+			Toast.makeText(this, stat.toString(), Toast.LENGTH_LONG).show();
+			
+		default:
+			
+			return super.onOptionsItemSelected(item);
+		}
 	}
 	
 	public void newToDo(View view)

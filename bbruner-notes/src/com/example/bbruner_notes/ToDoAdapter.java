@@ -25,18 +25,17 @@ public class ToDoAdapter extends ArrayAdapter<ToDo>{
 	
 	@Override
 	public View getView(int listPosition, View listView, ViewGroup parent)
-	{
-		LayoutInflater inflater = (LayoutInflater) this.adaptersContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View listViewRow = inflater.inflate(R.layout.list_item_view, parent, false);
-		
+	{		
 		class TempToDo{
 			public ToDo todo;
 			public TextView textView;
 			public ImageView imageView;
 			public CheckBox checkbox;
 		};
-		
 		final TempToDo temp = new TempToDo();
+		
+		LayoutInflater inflater = (LayoutInflater) this.adaptersContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View listViewRow = inflater.inflate(R.layout.list_item_view, parent, false);
 		
 		temp.todo = this.toDoList.get(listPosition);
 		temp.textView = (TextView) listViewRow.findViewById(R.id.list_text);

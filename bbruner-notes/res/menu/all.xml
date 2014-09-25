@@ -14,5 +14,10 @@
         android:icon="@drawable/ic_action_sd_storage"
         android:title="@string/go_to_archived"
         app:showAsAction="ifRoom" />
+    
+    <item 
+        android:id="@+id/statistics"
+        android:title="@string/statistics"
+        app:showAsAction="never" />
 
 </menu>

@@ -15,4 +15,9 @@
         android:title="@string/go_to_todo"
         app:showAsAction="ifRoom" />
 
+    <item 
+        android:id="@+id/statistics"
+        android:title="@string/statistics"
+        app:showAsAction="never" />
+    
 </menu>
