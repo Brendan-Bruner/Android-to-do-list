@@ -181,6 +181,10 @@ public class ArchiveActivity extends ActionBarActivity {
 							todo.setSelected(false);
 						}
 					}	
+					// Notify the adapter of the changes then close the menu
+					adapter.notifyDataSetChanged();
+					mode.finish();
+					return true;
 					
 				case R.id.action_unarchive:
 					// Iterate through the bizarre data structure SparseBooleanArray to archive selected

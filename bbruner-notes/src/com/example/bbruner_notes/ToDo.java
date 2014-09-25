@@ -23,18 +23,6 @@ public class ToDo implements Serializable {
 		this.selected = false;
 	}
 	
-	/*@Override
-	public ToDo(Parcel in)
-	{
-		String[] inputs = new String[3];
-		in.readStringArray(inputs)
-		
-		this.name = inputs[0];
-		this.name description = inputs[1];
-		this.finished = Boolean.parseBoolean(inputs[2]);
-		this.selected = Boolean.parseBoolean(inputs[3]);
-	}*/
-	
 	public void setSelected(boolean selected){ this.selected = selected; }
 	
 	public void toggleSelected(){ this.selected = !this.selected; }
@@ -43,17 +31,7 @@ public class ToDo implements Serializable {
 	
 	public void setFinished(boolean finished){ this.finished = finished; }
 	
-	public void toggleFinished(){return;}//{ this.finished = !this.finished; }
-	/*{
-		if(this.finished)
-		{
-			this.finished = false;
-		}
-		else
-		{
-			this.finished = true;
-		}
-	}*/
+	public void toggleFinished(){ this.finished = !this.finished; }
 	
 	public boolean isFinished(){ return this.finished; }
 	
