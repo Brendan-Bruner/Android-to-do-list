@@ -16,5 +16,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="archive_hint">Archived To Do List</string>
     <string name="go_to_todo">Main To Dos</string>
+    <string name="title_activity_all">AllActivity</string>
+    <string name="all_hint">All To Dos</string>
 
 </resources>

@@ -26,6 +26,10 @@
             android:name=".ArchiveActivity"
             android:label="@string/title_activity_archive" >
         </activity>
+        <activity
+            android:name=".AllActivity"
+            android:label="@string/title_activity_all" >
+        </activity>
     </application>
 
 </manifest>
