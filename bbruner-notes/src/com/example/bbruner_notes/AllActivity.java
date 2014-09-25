@@ -85,27 +85,44 @@ public class AllActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		
 		// Handle action bar item clicks here
+		switch(item.getItemId())
+		{
 		
-		int id = item.getItemId();
-		
-		if(id == R.id.go_to_todo_from_all || id == R.id.go_to_archived_from_all){ this.updateToDos(); }
-		
-		if (id == R.id.go_to_todo_from_all) {
+		case R.id.go_to_todo_from_all:
+			
 			// Add all archived todos to the intent then start the archive activity
-			Intent intent = new Intent(this, MainActivity.class);
+			Intent intentMain = new Intent(this, MainActivity.class);
+			this.updateToDos();
 			Toast.makeText(this, "Main To Dos", Toast.LENGTH_SHORT).show();
-			startActivity(intent);
+			startActivity(intentMain);
 			return true;
-		}
-		else if(id == R.id.go_to_archived_from_all) {
+		
+		case R.id.go_to_archived_from_all:
+			
 			// Add all archived todos to the intent then start the archive activity
-			Intent intent = new Intent(this, ArchiveActivity.class);
+			Intent intentArchive = new Intent(this, ArchiveActivity.class);
+			this.updateToDos();
 			Toast.makeText(this, "Archived To Dos", Toast.LENGTH_SHORT).show();
-			startActivity(intent);
+			startActivity(intentArchive);
 			return true;
+			
+		case R.id.statistics:
+			
+			this.updateToDos();
+			ToDoStatistics stat = new ToDoStatistics();
+			stat.calcStatistics(mainToDoItems, archivedToDoItems);
+			
+			StatDialog msg = new StatDialog();
+			msg.setMessage(stat.toString());
+			msg.showStat(this);
+			return true;
+		
+		default:
+			
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 	
 	public void onCheck(View listView)

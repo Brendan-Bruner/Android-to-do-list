@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.example.data_management.ArchiveFileIO;
+import com.example.data_management.EmailInterface;
 import com.example.data_management.FileIO;
 import com.example.data_management.MainToDoFileIO;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -35,11 +37,14 @@ public class MainActivity extends ActionBarActivity {
 	private ListView toDoList;
 	private FileIO iOMain;
 	private FileIO iOArchive;
+	private EmailInterface emailInterface;
+	private Context ctx;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		this.ctx = this;
 	}
 
 	@Override
@@ -50,6 +55,7 @@ public class MainActivity extends ActionBarActivity {
 		// New FileIO class to save ToDos
 		iOMain = new MainToDoFileIO(this);
 		iOArchive = new ArchiveFileIO(this);
+		emailInterface = new EmailInterface(this);
 		
 		this.toDoItems = iOMain.loadToDo();
 		this.archiveToDo = iOArchive.loadToDo();
@@ -70,6 +76,7 @@ public class MainActivity extends ActionBarActivity {
 		this.toDoList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 		this.toDoList.setMultiChoiceModeListener(this.multiChoiceModeListener());
 	}
+
 	
 	@Override
 	protected void onPause()
@@ -113,7 +120,11 @@ public class MainActivity extends ActionBarActivity {
 			
 			ToDoStatistics stat = new ToDoStatistics();
 			stat.calcStatistics(toDoItems, archiveToDo);
-			Toast.makeText(this, stat.toString(), Toast.LENGTH_LONG).show();
+			
+			StatDialog msg = new StatDialog();
+			msg.setMessage(stat.toString());
+			msg.showStat(this);
+			return true;
 			
 		default:
 			
@@ -131,7 +142,6 @@ public class MainActivity extends ActionBarActivity {
 		
 		// Error check the message
 		if(msg == null || msg.trim().length() <= 0){ return; }
-		
 		
 		// Add the todo to the array list, notify the adapter of the change
 		this.toDoItems.add(new ToDo(msg, null, false));
@@ -260,6 +270,25 @@ public class MainActivity extends ActionBarActivity {
 					// Notify the adapter of the changes then close the menu
 					adapter.notifyDataSetChanged();
 					mode.finish();
+					return true;
+					
+				case R.id.email:
+					
+					String emailInterfaceMsg = "To Items";
+					
+					ArrayList<ToDo> all = new ArrayList<ToDo>();
+					all.addAll(toDoItems);
+					all.addAll(archiveToDo);
+					
+					Iterator<ToDo> iterAll = all.iterator();
+					while(iterAll.hasNext())
+					{
+						ToDo todo = iterAll.next();
+						if(todo.isSelected()){ emailInterfaceMsg = emailInterfaceMsg + "\n" + todo.toString(); }
+					}
+					
+					//emailInterface.emailToDo(ctx, "bbruner@ualberta.ca", "hi");
+					emailInterface.emailToDo(ctx, emailInterface.loadString(), emailInterfaceMsg);
 					return true;
 					
 				default:

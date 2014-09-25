@@ -70,7 +70,6 @@ public class ArchiveActivity extends ActionBarActivity {
 		iOMain.saveToDo(mainToDoItems);
 		iOArchive.saveToDo(archivedToDoItems);
 	}
-
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,26 +80,40 @@ public class ArchiveActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		
 		// Handle action bar item clicks here
-		
-		int id = item.getItemId();
-		
-		if (id == R.id.go_to_main_from_archived) {
-			// Add all archived todos to the intent then start the archive activity
-			Intent intent = new Intent(this, MainActivity.class);
-			Toast.makeText(this, "Main To Dos", Toast.LENGTH_SHORT).show();
-			startActivity(intent);
-			return true;
-		}
-		else if(id == R.id.go_to_all_from_archived)
+		switch(item.getItemId())
 		{
+		
+		case R.id.go_to_main_from_archived:
 			// Add all archived todos to the intent then start the archive activity
-			Intent intent = new Intent(this, AllActivity.class);
-			Toast.makeText(this, "Archived To Dos", Toast.LENGTH_SHORT).show();
-			startActivity(intent);
+			Intent intentMain = new Intent(this, MainActivity.class);
+			Toast.makeText(this, "Main To Dos", Toast.LENGTH_SHORT).show();
+			startActivity(intentMain);
 			return true;
+		
+		case R.id.go_to_all_from_archived:
+		
+			// Add all archived todos to the intent then start the archive activity
+			Intent intentAll = new Intent(this, AllActivity.class);
+			Toast.makeText(this, "Archived To Dos", Toast.LENGTH_SHORT).show();
+			startActivity(intentAll);
+			return true;
+			
+		case R.id.statistics:
+			
+			ToDoStatistics stat = new ToDoStatistics();
+			stat.calcStatistics(mainToDoItems, archivedToDoItems);
+			
+			StatDialog msg = new StatDialog();
+			msg.setMessage(stat.toString());
+			msg.showStat(this);
+			return true;
+		
+		default:
+			
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 	
 	public void onCheck(View listView)

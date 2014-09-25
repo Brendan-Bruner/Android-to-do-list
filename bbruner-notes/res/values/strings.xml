@@ -22,6 +22,10 @@
     <string name="go_to_archived_from_main">Archived To Dos</string>
     <string name="go_to_archived">Archived To Dos</string>
     <string name="go_to_all_from_archived">All To Dos</string>
-	<string name="statistics">Statistics</string>
-    
+    <string name="statistics">Statistics</string>
+    <string name="email">Email Selected</string>
+    <string name="title_activity_email">EmailActivity</string>
+    <string name="enter_email">Enter Email Address</string>
+    <string name="email_button">Done</string>
+
 </resources>

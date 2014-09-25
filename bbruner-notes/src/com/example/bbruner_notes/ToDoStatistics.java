@@ -85,7 +85,7 @@ public class ToDoStatistics {
 	public String toString()
 	{
 		return "Total Finished: "+this.getCheckedToDo()+
-				"\nTotal Unchecked: "+this.getUncheckedToDo()+
+				"\nTotal Unfinished: "+this.getUncheckedToDo()+
 				"\nTotal Archived: "+this.getArchivedToDo()+
 				"\nTotal Finished Archived: "+this.getCheckedArchivedToDo()+
 				"\nTotal Unfinished Archived: "+this.getUncheckedArchivedToDo();

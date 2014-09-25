@@ -21,5 +21,10 @@
         android:icon="@drawable/ic_action_not_important_light"
         android:title="@string/mark_unfinished_string"
         android:showAsAction="ifRoom" />
+    
+        
+    <item android:id="@+id/email"
+        android:title="@string/email"
+        android:showAsAction="never" />
 
 </menu>
