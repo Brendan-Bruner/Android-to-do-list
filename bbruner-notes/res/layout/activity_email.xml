@@ -10,6 +10,12 @@
     android:theme="@android:style/Theme.Holo.Light.Dialog"
     tools:context=".EmailActivity" >
 
+    	<TextView 
+    	    android:id="@+id/email_message_string"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:text="@string/email_validation_warning" />
+    
     	<EditText android:id="@+id/email_string"
        		android:layout_weight="1"
         	android:layout_width="wrap_content"

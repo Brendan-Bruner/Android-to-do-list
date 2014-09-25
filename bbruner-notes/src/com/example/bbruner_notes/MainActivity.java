@@ -83,6 +83,8 @@ public class MainActivity extends ActionBarActivity {
 	{
 		super.onPause();
 		
+		/* must go through all to do items and remove there selected status before saving them */
+		
 		// save to do items when activity is suspended
 		iOMain.saveToDo(toDoItems);
 		iOArchive.saveToDo(archiveToDo);
