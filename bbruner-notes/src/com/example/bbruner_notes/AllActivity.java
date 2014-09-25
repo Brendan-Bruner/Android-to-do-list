@@ -1,6 +1,7 @@
 package com.example.bbruner_notes;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.example.data_management.ArchiveFileIO;
 import com.example.data_management.FileIO;
@@ -23,11 +24,11 @@ public class AllActivity extends ActionBarActivity {
 	private ArrayAdapter<ToDo> adapter;
 	private ArrayList<ToDo> archivedToDoItems;
 	private ArrayList<ToDo> mainToDoItems;
+	private ArrayList<ToDo> allToDoItems;
 	private ListView toDoList;
 	private FileIO iOArchive;
 	private FileIO iOMain;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class AllActivity extends ActionBarActivity {
 	protected void onStart()
 	{
 		super.onStart();
-		
+		allToDoItems = new ArrayList<ToDo>();
 		// Get the list view element in the activity_archive xml file
 		this.toDoList = (ListView) findViewById(R.id.list_view_all);
 		
@@ -48,8 +49,12 @@ public class AllActivity extends ActionBarActivity {
 		archivedToDoItems = iOArchive.loadToDo();
 		mainToDoItems = iOMain.loadToDo();
 		
+		allToDoItems.addAll(archivedToDoItems);
+		allToDoItems.addAll(mainToDoItems);
+		
+		
 		// Make adapter for the to do list
-		this.adapter = new ToDoAdapter(this, this.archivedToDoItems);
+		this.adapter = new ToDoAdapter(this, this.allToDoItems);
 		
 		// Set this adapter to manage to do items being added and removed
 		this.toDoList.setAdapter(this.adapter);
@@ -63,7 +68,7 @@ public class AllActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.archive, menu);
+		getMenuInflater().inflate(R.menu.all, menu);
 		return true;
 	}
 
@@ -73,9 +78,19 @@ public class AllActivity extends ActionBarActivity {
 		
 		int id = item.getItemId();
 		
-		if (id == R.id.go_to_todo) {
+		if(id == R.id.go_to_todo_from_all || id == R.id.go_to_archived_from_all){ this.updateToDos(); }
+		
+		if (id == R.id.go_to_todo_from_all) {
 			// Add all archived todos to the intent then start the archive activity
 			Intent intent = new Intent(this, MainActivity.class);
+			iOArchive.saveToDo(this.archivedToDoItems);
+			iOMain.saveToDo(this.mainToDoItems);
+			startActivity(intent);
+			return true;
+		}
+		else if(id == R.id.go_to_archived_from_all) {
+			// Add all archived todos to the intent then start the archive activity
+			Intent intent = new Intent(this, ArchiveActivity.class);
 			iOArchive.saveToDo(this.archivedToDoItems);
 			iOMain.saveToDo(this.mainToDoItems);
 			startActivity(intent);
@@ -99,6 +114,23 @@ public class AllActivity extends ActionBarActivity {
 		this.toDoList.setItemChecked(this.toDoList.getPositionForView(listView), checkedToDo.isSelected());
 	}
 	
+	private void updateToDos()
+	{
+		ArrayList<ToDo> newArchived = new ArrayList<ToDo>();
+		ArrayList<ToDo> newMain = new ArrayList<ToDo>();
+		
+		Iterator<ToDo> iter = allToDoItems.iterator();
+		while(iter.hasNext())
+		{
+			ToDo todo = iter.next();
+			if(archivedToDoItems.contains(todo)){ newArchived.add(todo); }
+			else if(mainToDoItems.contains(todo)){ newMain.add(todo); }
+		}
+		
+		archivedToDoItems = newArchived;
+		mainToDoItems = newMain;
+	}
+	
 	private AbsListView.MultiChoiceModeListener multiChoiceModeListener()
 	{
 		/* This function returns the multi choice mode listener for the list view in activity main
@@ -109,7 +141,7 @@ public class AllActivity extends ActionBarActivity {
 			@Override
 			public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 				MenuInflater inflater = mode.getMenuInflater();
-		        inflater.inflate(R.menu.archive_to_do_menu, menu);
+		        inflater.inflate(R.menu.all_to_do_menu, menu);
 		        return true;
 			}
 
@@ -139,7 +171,7 @@ public class AllActivity extends ActionBarActivity {
 						int key = ids.keyAt(i);
 						if(ids.get(key))
 						{
-							archivedToDoItems.remove(adapter.getItem(key));
+							allToDoItems.remove(adapter.getItem(key));
 						}
 					}
 					
@@ -180,26 +212,6 @@ public class AllActivity extends ActionBarActivity {
 							todo.setSelected(false);
 						}
 					}	
-					// Notify the adapter of the changes then close the menu
-					adapter.notifyDataSetChanged();
-					mode.finish();
-					return true;
-					
-				case R.id.action_unarchive:
-					// Iterate through the bizarre data structure SparseBooleanArray to archive selected
-					// items
-					for(int i = size-1; i >= 0; i--)
-					{
-						int key = ids.keyAt(i);
-						if(ids.get(key))
-						{
-							ToDo todo = adapter.getItem(key);
-							todo.toggleSelected();
-							mainToDoItems.add(todo);
-							archivedToDoItems.remove(todo);
-						}
-					}
-					
 					// Notify the adapter of the changes then close the menu
 					adapter.notifyDataSetChanged();
 					mode.finish();

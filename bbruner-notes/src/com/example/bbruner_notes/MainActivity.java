@@ -55,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
 		this.archiveToDo = IOArchive.loadToDo();
 		
 		// Intent to handle pushing of data from this activity to the archive activity
-		this.archiveIntent = new Intent(this, ArchiveActivity.class);
+		//this.archiveIntent = new Intent(this, ArchiveActivity.class);
 		
 		// Get the list view element in the activity_main xml file
 		this.toDoList = (ListView) findViewById(R.id.list_view_main);	
@@ -83,16 +83,24 @@ public class MainActivity extends ActionBarActivity {
 		// Handle action bar item clicks here.
 		int id = item.getItemId();
 		
-		if (id == R.id.go_to_archive) 
+		if (id == R.id.go_to_archived_from_main) 
 		{
+			Intent intent = new Intent(this, ArchiveActivity.class);
 			this.IOMain.saveToDo(this.toDoItems);
 			this.IOArchive.saveToDo(this.archiveToDo);
-			
-			// Add all archived todos to the intent then start the archive activity
-			//archiveIntent.putExtra(MainActivity.ARCHIVE_TODO, this.archiveToDo);
-			startActivity(this.archiveIntent);
+			//startActivity(this.archiveIntent);
+			startActivity(intent);
+			return true;
 		}
-		// TODO view all todos
+		else if (id == R.id.go_to_all_from_main)
+		{
+			Intent intent = new Intent(this, AllActivity.class);
+			this.IOMain.saveToDo(this.toDoItems);
+			this.IOArchive.saveToDo(this.archiveToDo);
+			startActivity(intent);
+			return true;
+		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 	

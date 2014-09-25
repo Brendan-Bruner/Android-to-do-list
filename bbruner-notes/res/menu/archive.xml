@@ -3,8 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.bbruner_notes.ArchiveActivity" >
 
+    <item
+        android:id="@+id/go_to_all_from_archived"
+        android:icon="@drawable/ic_action_collection"
+        android:title="@string/go_to_all_from_archived"
+        app:showAsAction="ifRoom" />
+    
     <item 
-        android:id="@+id/go_to_todo"
+        android:id="@+id/go_to_main_from_archived"
         android:icon="@drawable/ic_action_labels"
         android:title="@string/go_to_todo"
         app:showAsAction="ifRoom" />

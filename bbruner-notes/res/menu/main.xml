@@ -2,11 +2,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.bbruner_notes.MainActivity" >
-
+    
     <item 
-        android:id="@+id/go_to_archive"
+        android:id="@+id/go_to_all_from_main"
+        android:icon="@drawable/ic_action_collection"
+        android:title="@string/go_to_all_from_main"
+        app:showAsAction="ifRoom" />
+    
+    <item 
+        android:id="@+id/go_to_archived_from_main"
         android:icon="@drawable/ic_action_sd_storage"
-        android:title="@string/action_settings"
+        android:title="@string/go_to_archived_from_main"
         app:showAsAction="ifRoom" />
     
     

@@ -74,9 +74,18 @@ public class ArchiveActivity extends ActionBarActivity {
 		
 		int id = item.getItemId();
 		
-		if (id == R.id.go_to_todo) {
+		if (id == R.id.go_to_main_from_archived) {
 			// Add all archived todos to the intent then start the archive activity
 			Intent intent = new Intent(this, MainActivity.class);
+			iOArchive.saveToDo(this.archivedToDoItems);
+			iOMain.saveToDo(this.mainToDoItems);
+			startActivity(intent);
+			return true;
+		}
+		else if(id == R.id.go_to_all_from_archived)
+		{
+			// Add all archived todos to the intent then start the archive activity
+			Intent intent = new Intent(this, AllActivity.class);
 			iOArchive.saveToDo(this.archivedToDoItems);
 			iOMain.saveToDo(this.mainToDoItems);
 			startActivity(intent);

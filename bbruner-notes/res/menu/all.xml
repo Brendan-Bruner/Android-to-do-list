@@ -1,12 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.bbruner_notes.AllActivity" >
+    tools:context="com.example.bbruner_notes.ArchiveActivity" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
+    <item 
+        android:id="@+id/go_to_todo_from_all"
+        android:icon="@drawable/ic_action_labels"
+        android:title="@string/go_to_todo"
+        app:showAsAction="ifRoom" />
+    
+    <item 
+        android:id="@+id/go_to_archived_from_all"
+        android:icon="@drawable/ic_action_sd_storage"
+        android:title="@string/go_to_archived"
+        app:showAsAction="ifRoom" />
 
 </menu>
