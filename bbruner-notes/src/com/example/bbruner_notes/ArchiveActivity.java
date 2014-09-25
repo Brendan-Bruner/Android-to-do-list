@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ArchiveActivity extends ActionBarActivity {
 	private ArrayAdapter<ToDo> adapter;
@@ -27,7 +28,6 @@ public class ArchiveActivity extends ActionBarActivity {
 	private FileIO iOArchive;
 	private FileIO iOMain;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,6 +60,17 @@ public class ArchiveActivity extends ActionBarActivity {
 		this.toDoList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 		this.toDoList.setMultiChoiceModeListener(this.multiChoiceModeListener());
 	}
+
+	@Override
+	protected void onPause()
+	{
+		super.onPause();
+		
+		// save to do items when activity is suspended
+		iOMain.saveToDo(mainToDoItems);
+		iOArchive.saveToDo(archivedToDoItems);
+	}
+
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,8 +88,7 @@ public class ArchiveActivity extends ActionBarActivity {
 		if (id == R.id.go_to_main_from_archived) {
 			// Add all archived todos to the intent then start the archive activity
 			Intent intent = new Intent(this, MainActivity.class);
-			iOArchive.saveToDo(this.archivedToDoItems);
-			iOMain.saveToDo(this.mainToDoItems);
+			Toast.makeText(this, "Main To Dos", Toast.LENGTH_SHORT).show();
 			startActivity(intent);
 			return true;
 		}
@@ -86,8 +96,7 @@ public class ArchiveActivity extends ActionBarActivity {
 		{
 			// Add all archived todos to the intent then start the archive activity
 			Intent intent = new Intent(this, AllActivity.class);
-			iOArchive.saveToDo(this.archivedToDoItems);
-			iOMain.saveToDo(this.mainToDoItems);
+			Toast.makeText(this, "Archived To Dos", Toast.LENGTH_SHORT).show();
 			startActivity(intent);
 			return true;
 		}

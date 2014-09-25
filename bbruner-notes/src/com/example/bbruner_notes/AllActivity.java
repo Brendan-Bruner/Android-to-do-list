@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class AllActivity extends ActionBarActivity {
 	private ArrayAdapter<ToDo> adapter;
@@ -66,6 +67,16 @@ public class AllActivity extends ActionBarActivity {
 	}
 	
 	@Override
+	protected void onPause()
+	{
+		super.onPause();
+		
+		// save to do items when activity is suspended
+		iOMain.saveToDo(mainToDoItems);
+		iOArchive.saveToDo(archivedToDoItems);
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.all, menu);
@@ -83,16 +94,14 @@ public class AllActivity extends ActionBarActivity {
 		if (id == R.id.go_to_todo_from_all) {
 			// Add all archived todos to the intent then start the archive activity
 			Intent intent = new Intent(this, MainActivity.class);
-			iOArchive.saveToDo(this.archivedToDoItems);
-			iOMain.saveToDo(this.mainToDoItems);
+			Toast.makeText(this, "Main To Dos", Toast.LENGTH_SHORT).show();
 			startActivity(intent);
 			return true;
 		}
 		else if(id == R.id.go_to_archived_from_all) {
 			// Add all archived todos to the intent then start the archive activity
 			Intent intent = new Intent(this, ArchiveActivity.class);
-			iOArchive.saveToDo(this.archivedToDoItems);
-			iOMain.saveToDo(this.mainToDoItems);
+			Toast.makeText(this, "Archived To Dos", Toast.LENGTH_SHORT).show();
 			startActivity(intent);
 			return true;
 		}
@@ -116,6 +125,9 @@ public class AllActivity extends ActionBarActivity {
 	
 	private void updateToDos()
 	{
+		/* This function will take take the intersection of main and archived to do items with all to do items
+		 * then overwrite that intersection into the main and archived to items
+		 */
 		ArrayList<ToDo> newArchived = new ArrayList<ToDo>();
 		ArrayList<ToDo> newMain = new ArrayList<ToDo>();
 		

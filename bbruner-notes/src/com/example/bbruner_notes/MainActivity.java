@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 	public final static String ARCHIVE_TODO = "com.example.bbruner_notes.MainActivity.ARCHIVE_TODO";
@@ -32,9 +33,8 @@ public class MainActivity extends ActionBarActivity {
 	private ArrayList<ToDo> toDoItems;
 	private ArrayList<ToDo> archiveToDo;
 	private ListView toDoList;
-	private Intent archiveIntent;
-	private FileIO IOMain;
-	private FileIO IOArchive;
+	private FileIO iOMain;
+	private FileIO iOArchive;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +48,11 @@ public class MainActivity extends ActionBarActivity {
 		super.onStart();
 		
 		// New FileIO class to save ToDos
-		IOMain = new MainToDoFileIO(this);
-		IOArchive = new ArchiveFileIO(this);
+		iOMain = new MainToDoFileIO(this);
+		iOArchive = new ArchiveFileIO(this);
 		
-		this.toDoItems = IOMain.loadToDo();
-		this.archiveToDo = IOArchive.loadToDo();
+		this.toDoItems = iOMain.loadToDo();
+		this.archiveToDo = iOArchive.loadToDo();
 		
 		// Intent to handle pushing of data from this activity to the archive activity
 		//this.archiveIntent = new Intent(this, ArchiveActivity.class);
@@ -72,6 +72,16 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 	@Override
+	protected void onPause()
+	{
+		super.onPause();
+		
+		// save to do items when activity is suspended
+		iOMain.saveToDo(toDoItems);
+		iOArchive.saveToDo(archiveToDo);
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar
 		getMenuInflater().inflate(R.menu.main, menu);
@@ -86,17 +96,14 @@ public class MainActivity extends ActionBarActivity {
 		if (id == R.id.go_to_archived_from_main) 
 		{
 			Intent intent = new Intent(this, ArchiveActivity.class);
-			this.IOMain.saveToDo(this.toDoItems);
-			this.IOArchive.saveToDo(this.archiveToDo);
-			//startActivity(this.archiveIntent);
+			Toast.makeText(this, "Archived To Dos", Toast.LENGTH_SHORT).show();
 			startActivity(intent);
 			return true;
 		}
 		else if (id == R.id.go_to_all_from_main)
 		{
 			Intent intent = new Intent(this, AllActivity.class);
-			this.IOMain.saveToDo(this.toDoItems);
-			this.IOArchive.saveToDo(this.archiveToDo);
+			Toast.makeText(this, "All To Dos", Toast.LENGTH_SHORT).show();
 			startActivity(intent);
 			return true;
 		}
@@ -111,6 +118,9 @@ public class MainActivity extends ActionBarActivity {
 		 */
 		// Get the name of the todo
 		String msg = ((EditText) findViewById(R.id.new_todo_entry)).getText().toString();
+		
+		// Error check the message
+		if(msg == null || msg.trim().length() <= 0){ return; }
 		
 		
 		// Add the todo to the array list, notify the adapter of the change

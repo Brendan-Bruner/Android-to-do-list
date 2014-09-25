@@ -51,7 +51,7 @@ public class ToDoAdapter extends ArrayAdapter<ToDo>{
 		
 		temp.checkbox.setChecked(this.toDoList.get(listPosition).isSelected());
 		
-		listViewRow.setTag(temp.todo);
+		listViewRow.setTag(temp);
 		
 		return listViewRow;
 	} 	
