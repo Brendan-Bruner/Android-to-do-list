@@ -4,9 +4,11 @@ import com.example.data_management.EmailInterface;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EmailActivity extends Activity {
 	private EmailInterface emailInterface;
@@ -22,6 +24,11 @@ public class EmailActivity extends Activity {
 	{
 		super.onStart();
 		emailInterface = new EmailInterface(this);
+		if(emailInterface.loadString() != null)
+		{
+			Intent intentAll = new Intent(this, MainActivity.class);
+			startActivity(intentAll);
+		}
 	}
 	
 	@Override
@@ -35,7 +42,8 @@ public class EmailActivity extends Activity {
 	{
 		String msg = ((EditText) findViewById(R.id.email_string)).getText().toString();
 		emailInterface.saveString(msg);
-		finish();
+		Intent intentAll = new Intent(this, MainActivity.class);
+		startActivity(intentAll);
 	}
 
 }
