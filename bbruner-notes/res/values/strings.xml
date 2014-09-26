@@ -24,7 +24,7 @@
     <string name="go_to_all_from_archived">All To Dos</string>
     <string name="statistics">Statistics</string>
     <string name="email">Email Selected</string>
-    <string name="title_activity_email">Please Enter An Email Address</string>
+    <string name="title_activity_email">bbuner-notes</string>
     <string name="enter_email">Enter Email Address</string>
     <string name="email_button">Continue</string>
     <string name="email_validation_warning">This app requires a valid email address.</string>

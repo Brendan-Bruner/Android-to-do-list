@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -143,6 +144,7 @@ public class MainActivity extends ActionBarActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
 	
 	public void newToDo(View view)
 	{
@@ -309,8 +311,12 @@ public class MainActivity extends ActionBarActivity {
 
 			@Override
 			public void onDestroyActionMode(ActionMode mode) {
-				// TODO Auto-generated method stub
+				/* must go through all to do items and remove there selected status before saving them */
+				Iterator<ToDo> mainIter = toDoItems.iterator();
+				Iterator<ToDo> archIter = archiveToDo.iterator();
 				
+				while(mainIter.hasNext()){ mainIter.next().setSelected(false); }
+				while(archIter.hasNext()){ archIter.next().setSelected(false); }
 			}
 
 			@Override
