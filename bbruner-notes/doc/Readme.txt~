@@ -1,0 +1,25 @@
+**** bbruner-notes README ****
+
+When the app starts you will be asked to provide an email address. This
+was done because I did not have time to think of another way to allow
+use of the app and ask for an email address when it was needed
+
+** App Layout **
+
+After providing an email address you will probably see an action bar with a few
+possible selections. You can switch between viewing archived, all, and main
+todos. You can also change your email address. 
+
+To create a new todo make sure you are in the main view - where there is a 
+text box and a button that says 'new'. Enter the name of the todo in the 
+text  box and hit new. 
+
+The new todo has a checkbox and an empty star. The empty star means the todo is
+unfinished. Select this todo by tapping the check box. You will notice that
+your action bar changed. The new options available allow you to move the
+selected to dos between archived and main todos, mark them as finished or 
+unfinished, or email them.
+
+In summary there are three views you can cycle through by using the main action
+bar - main, archive, and all. Selecting one or more todo items will change your
+action bar to give options that affect the selected todos.
