@@ -28,5 +28,6 @@
     <string name="enter_email">Enter Email Address</string>
     <string name="email_button">Continue</string>
     <string name="email_validation_warning">This app requires a valid email address.</string>
+    <string name="change_email">Change Email</string>
 
 </resources>

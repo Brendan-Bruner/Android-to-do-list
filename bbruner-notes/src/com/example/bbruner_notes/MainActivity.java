@@ -44,7 +44,6 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		this.ctx = this;
 	}
 
 	@Override
@@ -60,8 +59,7 @@ public class MainActivity extends ActionBarActivity {
 		this.toDoItems = iOMain.loadToDo();
 		this.archiveToDo = iOArchive.loadToDo();
 		
-		// Intent to handle pushing of data from this activity to the archive activity
-		//this.archiveIntent = new Intent(this, ArchiveActivity.class);
+		this.ctx = this;
 		
 		// Get the list view element in the activity_main xml file
 		this.toDoList = (ListView) findViewById(R.id.list_view_main);	
@@ -84,6 +82,12 @@ public class MainActivity extends ActionBarActivity {
 		super.onPause();
 		
 		/* must go through all to do items and remove there selected status before saving them */
+		Iterator<ToDo> mainIter = toDoItems.iterator();
+		Iterator<ToDo> archIter = archiveToDo.iterator();
+		
+		while(mainIter.hasNext()){ mainIter.next().setSelected(false); }
+		while(archIter.hasNext()){ archIter.next().setSelected(false); }
+		
 		
 		// save to do items when activity is suspended
 		iOMain.saveToDo(toDoItems);
@@ -127,6 +131,12 @@ public class MainActivity extends ActionBarActivity {
 			msg.setMessage(stat.toString());
 			msg.showStat(this);
 			return true;
+			
+		case R.id.change_email:
+			
+			Intent emailIntent = new Intent(this, EmailActivity.class);
+			emailInterface.saveString(null);
+			startActivity(emailIntent);
 			
 		default:
 			
@@ -276,7 +286,7 @@ public class MainActivity extends ActionBarActivity {
 					
 				case R.id.email:
 					
-					String emailInterfaceMsg = "To Items";
+					String emailInterfaceMsg = "To Do Items";
 					
 					ArrayList<ToDo> all = new ArrayList<ToDo>();
 					all.addAll(toDoItems);
@@ -288,8 +298,7 @@ public class MainActivity extends ActionBarActivity {
 						ToDo todo = iterAll.next();
 						if(todo.isSelected()){ emailInterfaceMsg = emailInterfaceMsg + "\n" + todo.toString(); }
 					}
-					
-					//emailInterface.emailToDo(ctx, "bbruner@ualberta.ca", "hi");
+				
 					emailInterface.emailToDo(ctx, emailInterface.loadString(), emailInterfaceMsg);
 					return true;
 					

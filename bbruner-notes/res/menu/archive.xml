@@ -20,5 +20,10 @@
         android:title="@string/statistics"
         app:showAsAction="never" />
     
+            <item 
+        android:id="@+id/change_email"
+        android:title="@string/change_email"
+        app:showAsAction="never" />
+    
            
 </menu>

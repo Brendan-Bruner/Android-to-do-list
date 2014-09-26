@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.example.data_management.ArchiveFileIO;
+import com.example.data_management.EmailInterface;
 import com.example.data_management.FileIO;
 import com.example.data_management.MainToDoFileIO;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -29,6 +31,8 @@ public class AllActivity extends ActionBarActivity {
 	private ListView toDoList;
 	private FileIO iOArchive;
 	private FileIO iOMain;
+	private EmailInterface emailInterface;
+	private Context ctx;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +51,11 @@ public class AllActivity extends ActionBarActivity {
 		// Get the array list of archived to do items and main to do items
 		iOArchive = new ArchiveFileIO(this);
 		iOMain = new MainToDoFileIO(this);
+		emailInterface = new EmailInterface(this);
 		archivedToDoItems = iOArchive.loadToDo();
 		mainToDoItems = iOMain.loadToDo();
+		
+		this.ctx = this;
 		
 		allToDoItems.addAll(archivedToDoItems);
 		allToDoItems.addAll(mainToDoItems);
@@ -70,6 +77,13 @@ public class AllActivity extends ActionBarActivity {
 	protected void onPause()
 	{
 		super.onPause();
+		
+		/* must go through all to do items and remove there selected status before saving them */
+		Iterator<ToDo> mainIter = mainToDoItems.iterator();
+		Iterator<ToDo> archIter = archivedToDoItems.iterator();
+		
+		while(mainIter.hasNext()){ mainIter.next().setSelected(false); }
+		while(archIter.hasNext()){ archIter.next().setSelected(false); }
 		
 		// save to do items when activity is suspended
 		iOMain.saveToDo(mainToDoItems);
@@ -118,6 +132,12 @@ public class AllActivity extends ActionBarActivity {
 			msg.setMessage(stat.toString());
 			msg.showStat(this);
 			return true;
+			
+		case R.id.change_email:
+			
+			Intent emailIntent = new Intent(this, EmailActivity.class);
+			emailInterface.saveString(null);
+			startActivity(emailIntent);
 		
 		default:
 			
@@ -244,6 +264,24 @@ public class AllActivity extends ActionBarActivity {
 					// Notify the adapter of the changes then close the menu
 					adapter.notifyDataSetChanged();
 					mode.finish();
+					return true;
+					
+				case R.id.email:
+					
+					String emailInterfaceMsg = "To Do Items";
+					
+					ArrayList<ToDo> all = new ArrayList<ToDo>();
+					all.addAll(mainToDoItems);
+					all.addAll(archivedToDoItems);
+					
+					Iterator<ToDo> iterAll = all.iterator();
+					while(iterAll.hasNext())
+					{
+						ToDo todo = iterAll.next();
+						if(todo.isSelected()){ emailInterfaceMsg = emailInterfaceMsg + "\n" + todo.toString(); }
+					}
+				
+					emailInterface.emailToDo(ctx, emailInterface.loadString(), emailInterfaceMsg);
 					return true;
 					
 				default:
