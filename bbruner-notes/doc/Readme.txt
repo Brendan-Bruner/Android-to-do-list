@@ -25,6 +25,23 @@ bar - main, archive, and all. Selecting one or more todo items will change your
 action bar to give options that affect the selected todos.
 
 
+** Icons **
+Note - not all icons may be displayed - depending on the size of your screen
+
+CAB (action bar when check box is filled)
+*garbage can - delete
+*sd-card - send to archive
+*full star - mark as finished
+*empty star - mark as unfinished
+*... - Email selected
+
+AB (action bar normally present)
+*Folder - move to all to do list
+*sd-card - move to archived to do list
+*price tag - move to main to do list
+*... - show statisics or change email
+
+
 
 **** Bugs ****
 
@@ -34,3 +51,8 @@ going from knowing nothing of android/java to programming this app. When I
 began to realize I had made methodological mistakes they had already snowballed
 into huge problems that would take too much time and effort to fix - that is
 if I wanted to make the dead line for the project. 
+
+It will be very clear when reading the UML that MainActivity, ArchiveActivity,
+and AllActivity should have been combined into one activity as they all
+do he exact same thing with an ever so slightly different view. I would love
+to change this, but time  does not allow it I guess.
