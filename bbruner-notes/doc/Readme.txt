@@ -65,6 +65,7 @@ http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android
 The custom adapter is a loose reflection of the custom adapter from Lars Vogel in his tutorial at
 http://www.vogella.com/tutorials/AndroidListView/article.html
 
-The file io classes are copied and pasted from the lonely twitter app presented in CMPUT 301 lab.
+The file io classes are copied and pasted from the lonely twitter app presented in CMPUT 301 lab. It was
+taken from guana's github at https://github.com/guana/LonelyTwitter3
 
 All other API calls are attributed to androids documentation and countless google searches 
