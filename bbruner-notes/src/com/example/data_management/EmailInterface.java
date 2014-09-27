@@ -25,7 +25,11 @@ public class EmailInterface{
 	}
 
 	public void emailToDo(Context ctx, String address, String msg) {
-		
+		/* this function implements the code written by fiXedd at 
+		 * http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application
+		 *
+		 * fiXedd - http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application
+		 */
 		Intent emailIntent = new Intent(Intent.ACTION_SEND);
 		emailIntent.setType("message/rfc822");
 		emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{address});
