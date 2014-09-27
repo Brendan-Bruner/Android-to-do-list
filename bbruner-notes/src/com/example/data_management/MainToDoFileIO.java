@@ -13,6 +13,11 @@ import android.util.Log;
 import com.example.bbruner_notes.ToDo;
 
 public class MainToDoFileIO implements FileIO {
+	/* This class is strongly based off of the file io implementation done by guana at 
+	 * https://github.com/guana/LonelyTwitter3
+	 *
+	 * guana - https://github.com/guana/LonelyTwitter3
+	 */
 	private static final String FILENAME = "todo.sav";
 	private Context ctx;
 	
