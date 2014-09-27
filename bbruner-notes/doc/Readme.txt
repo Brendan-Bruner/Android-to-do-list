@@ -56,3 +56,15 @@ It will be very clear when reading the UML that MainActivity, ArchiveActivity,
 and AllActivity should have been combined into one activity as they all
 do he exact same thing with an ever so slightly different view. I would love
 to change this, but time  does not allow it I guess.
+
+
+**** Sources ****
+The email functionality was copied and pasted from stack overflow, credit belongs to fiXedd in this post at 
+http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application
+
+The custom adapter is a loose reflection of the custom adapter from Lars Vogel in his tutorial at
+http://www.vogella.com/tutorials/AndroidListView/article.html
+
+The file io classes are copied and pasted from the lonely twitter app presented in CMPUT 301 lab.
+
+All other API calls are attributed to androids documentation and countless google searches 
